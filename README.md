@@ -46,5 +46,3 @@ module "chef_server" {
 |private_key_pem|A list of private key pems|list|
 |certificate_domain|A list of fqdns that where created|list|
 |certificate_pem|A list of certificates pems|list|
-
-
