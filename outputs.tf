@@ -37,3 +37,7 @@ output "certificate_domain" {
 output "certificate_pem" {
   value = acme_certificate.certificate.*.certificate_pem
 }
+
+output "issuer_pem" {
+  value = acme_certificate.certificate.*.issuer_pem
+}
