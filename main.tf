@@ -17,7 +17,7 @@ resource "acme_registration" "reg" {
 
 resource "acme_certificate" "certificate" {
   count           = local.rec_count
-  account_key_pem = "${acme_registration.reg.account_key_pem}"
+  account_key_pem = acme_registration.reg.account_key_pem
   common_name     = "${element(keys(var.records), count.index)}.${var.domain_name}"
 
   dns_challenge {
