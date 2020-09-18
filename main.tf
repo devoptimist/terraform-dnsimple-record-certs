@@ -37,8 +37,8 @@ resource "dnsimple_record" "create_a" {
   count  = local.rec_count
 
   domain = var.domain_name
-  name   = element(keys(var.records), count.index)
-  value  = lookup(var.records, element(keys(var.records), count.index))
+  name   = length(var.records) > 0 ? element(keys(var.records), count.index) : ""
+  value  = length(var.records) > 0 ? lookup(var.records, element(keys(var.records), count.index)) : ""
   type   = "A"
   ttl    = 60
 }

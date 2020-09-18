@@ -7,23 +7,23 @@ output "domain_to_key" {
 }
 
 output "domain_to_ip" {
-  value = zipmap(acme_certificate.certificate.*.certificate_domain, values(var.records))
+  value = length(acme_certificate.certificate.*.certificate_domain) > 0 ? zipmap(acme_certificate.certificate.*.certificate_domain, values(var.records)) : {}
 }
 
 output "ip_to_domain" {
-  value = zipmap(values(var.records), acme_certificate.certificate.*.certificate_domain)
+  value = length(acme_certificate.certificate.*.certificate_domain) > 0 ? zipmap(values(var.records), acme_certificate.certificate.*.certificate_domain) : {}
 }
 
 output "ip_to_cert" {
-  value = zipmap(values(var.records), acme_certificate.certificate.*.certificate_pem)
+  value = length(acme_certificate.certificate.*.certificate_pem) > 0 ? zipmap(values(var.records), acme_certificate.certificate.*.certificate_pem) : {}
 }
 
 output "ip_to_intermediate" {
-  value = zipmap(values(var.records), acme_certificate.certificate.*.issuer_pem)
+  value = length(acme_certificate.certificate.*.issuer_pem) > 0 ? zipmap(values(var.records), acme_certificate.certificate.*.issuer_pem) : {}
 }
 
 output "ip_to_pem" {
-  value = zipmap(values(var.records), acme_certificate.certificate.*.private_key_pem)
+  value = length(acme_certificate.certificate.*.private_key_pem) > 0 ? zipmap(values(var.records), acme_certificate.certificate.*.private_key_pem) : {}
 }
 
 output "private_key_pem" {
